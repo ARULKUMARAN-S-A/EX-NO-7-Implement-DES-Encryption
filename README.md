@@ -1,5 +1,6 @@
 # EX-NO-7-Implement-DES-Encryption
-
+# Name : ARUL KUMARAN S A
+# Reg No : 212224040030
 ## Aim:
 
 To use the Data Encryption Standard (DES) algorithm for a practical application, such as securing sensitive data transmission in financial transactions.
@@ -12,13 +13,59 @@ To use the Data Encryption Standard (DES) algorithm for a practical application,
 4. DES applies initial and final permutations along with 16 rounds of substitution and permutation transformations to produce ciphertext.
 
 ## Program:
-
+```
+#include <stdio.h>
+ #include <string.h>
+ void encrypt(char *message, char *key, char *encryptedMessage, int
+ messageLength) {
+ int keyLength = strlen(key);
+ for (int i = 0; i < messageLength; i++) {
+ encryptedMessage[i] = message[i] ^ key[i % keyLength];
+ }
+ encryptedMessage[messageLength] = '\0'; 
+ }
+ void decrypt(char *encryptedMessage, char *key, char *decryptedMessage, int
+ messageLength) {
+ int keyLength = strlen(key);
+ for (int i = 0; i < messageLength; i++) {
+ decryptedMessage[i] = encryptedMessage[i] ^ key[i % keyLength];
+ }
+ decryptedMessage[messageLength] = '\0'; 
+ }
+ int main() {
+ char message[100];
+ char key[100];
+ printf("\nSimulation of DES encryption and decryption\n\n");
+ printf("Enter the message to encrypt: ");
+ fgets(message, sizeof(message), stdin);
+ message[strcspn(message, "\n")] = '\0'; 
+ printf("Enter the encryption key: ");
+ fgets(key, sizeof(key), stdin);
+ key[strcspn(key, "\n")] = '\0'; 
+ int messageLength = strlen(message);
+ char encryptedMessage[100];
+ char decryptedMessage[100];
+ encrypt(message, key, encryptedMessage, messageLength);
+ printf("Original Message: %s\n", message);
+ printf("Encrypted Message: ");
+ for (int i = 0; i < messageLength; i++) {
+ printf("%02X ", (unsigned char)encryptedMessage[i]);
+ }
+ printf("\n");
+ decrypt(encryptedMessage, key, decryptedMessage, messageLength);
+ printf("Decrypted Message: %s\n", decryptedMessage);
+ return 0;
+ }
+```
 
 
 
 ## Output:
 
+<img width="1721" height="973" alt="image" src="https://github.com/user-attachments/assets/a96aa6e6-3203-467b-bb3c-53690485c149" />
 
 ## Result:
+
+
   The program is executed successfully
 
